@@ -1,8 +1,10 @@
 const Sauce = require('../models/sauce');
 const fs =require('fs');
+// Importation du package xss-filters pour contrer les attaques d'injections
+const xssFilters = require('xss-filters');
 
 exports.createSauce = (req, res, next) => {
-  const sauceObject = JSON.parse(req.body.sauce);
+  const sauceObject = JSON.parse(xssFilters.inHTMLData(req.body.sauce));
   delete sauceObject._id;
   const sauce = new Sauce({
     ...sauceObject,
