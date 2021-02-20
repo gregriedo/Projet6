@@ -9,6 +9,8 @@ const app = express();
 
 mongoose.connect = require('./connexion');
 
+
+//Headers aux réponses pour permettre le cross origin sharing
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
